@@ -1,4 +1,4 @@
-# IT307 Integrated Project: DDoS Attack Detection & Mitigation System
+ DDoS Attack Detection & Mitigation System
 
 A modular, real-time Network Intrusion Detection & Automated Firewall Defense System built for **IT307 (Network Security & Protocols)**.
 
@@ -89,19 +89,4 @@ From the Attacker terminal or VM:
   python -m simulator.attack_cli --type http --target 127.0.0.1 --port 8080 --count 500 --threads 20
   ```
 
----
 
-## Syllabus Mapping (IT307)
-
-| Module | Core Concepts Demonstrated in this Project |
-|---|---|
-| **Module II (Protocols & Communications)** | Baseline protocol behavior; RFC standard packet formats for IP, TCP, UDP, ICMP. |
-| **Module III (Ethernet & Switching)** | Packet-level frame analysis, MAC/IP association, promiscuous capture. |
-| **Module IV (Transport Layer - TCP/UDP)** | TCP 3-way handshake exhaustion (SYN vs SYN-ACK ratio), connectionless UDP socket flooding. |
-| **Module V (Network Security Fundamentals)** | Real-time anomaly detection, rate limiting, automated Linux `iptables` defense & rule lifecycles. |
-
----
-
- Hard `DROP` blocks critical malicious floods immediately.
-3. **Why is an Auto-Expiry Cooldown essential?**
-   * *Answer:* IP spoofing or dynamic IP reallocation (DHCP) means permanent bans would eventually block legitimate users. A 60-second cooldown ensures defensive agility.
