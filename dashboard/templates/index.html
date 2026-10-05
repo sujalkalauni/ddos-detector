@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT307 DDoS Defense & Mitigation Console</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="navbar">
+            <div class="brand">
+                <div>
+                    <h1>IT307 DDoS Defense Console</h1>
+                    <p class="subtitle">Real-time Traffic Anomaly Detection & Automated Firewall Mitigator</p>
+                </div>
+            </div>
+            <div class="system-status" id="sys-status">
+                <span class="status-pulse green" id="status-dot"></span>
+                <span id="status-text">MONITORING NORMAL</span>
+            </div>
+        </header>
+
+        <!-- Metric KPI Cards -->
+        <section class="metrics-grid">
+            <div class="card metric-card">
+                <div class="metric-title">Total Ingress Rate</div>
+                <div class="metric-value" id="total-pps">0 <span class="unit">PPS</span></div>
+                <div class="metric-sub" id="pps-sub">Baseline normal</div>
+            </div>
+            <div class="card metric-card">
+                <div class="metric-title">TCP / SYN Rate</div>
+                <div class="metric-value" id="tcp-pps">0 <span class="unit">PPS</span></div>
+                <div class="metric-sub" id="tcp-sub">Handshakes regular</div>
+            </div>
+            <div class="card metric-card">
+                <div class="metric-title">UDP / ICMP Spike</div>
+                <div class="metric-value" id="udp-pps">0 <span class="unit">PPS</span></div>
+                <div class="metric-sub" id="udp-sub">Volumetric normal</div>
+            </div>
+            <div class="card metric-card">
+                <div class="metric-title">Active Blocked IPs</div>
+                <div class="metric-value alert-val" id="blocked-count">0</div>
+                <div class="metric-sub" id="block-sub">0 iptables DROP rules</div>
+            </div>
+        </section>
+
+        <!-- Main Chart Section -->
+        <section class="card chart-section">
+            <div class="card-header">
+                <h2>Live Traffic Telemetry (Packets Per Second)</h2>
+                <span class="badge live-badge">LIVE 1s POLLING</span>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="trafficChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Threat Feed & Blocked IPs Grid -->
+        <section class="bottom-grid">
+            <!-- Threat Alerts Feed -->
+            <div class="card alerts-card">
+                <div class="card-header">
+                    <h2>Detection Engine Alerts</h2>
+                    <span class="badge" id="alert-counter">0 Incidents</span>
+                </div>
+                <div class="feed-container" id="alerts-feed">
+                    <div class="empty-state">No active anomalies detected. System running in clean state.</div>
+                </div>
+            </div>
+
+            <!-- Blocked IPs & iptables Mitigations -->
+            <div class="card mitigation-card">
+                <div class="card-header">
+                    <h2>Active Firewall Mitigations (iptables)</h2>
+                    <span class="badge" id="mitigation-badge">0 Filtered</span>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Source IP</th>
+                                <th>Action</th>
+                                <th>Cooldown Left</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mitigation-table-body">
+                            <tr>
+                                <td colspan="4" class="empty-table">No IPs currently throttled or dropped.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>
