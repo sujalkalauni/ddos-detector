@@ -102,11 +102,6 @@ From the Attacker terminal or VM:
 
 ---
 
-## Viva / Defense Talking Points
-
-1. **Why is SYN:SYN-ACK ratio used instead of just raw packet count?**
-   * *Answer:* High traffic from legitimate users completes handshakes (high SYN and corresponding SYN-ACK/ACK). In an attack, incomplete half-open connections cause SYN packets to heavily outweigh SYN-ACKs, isolating true attacks without high false positives.
-2. **What is the difference between Rate Limiting and DROP?**
-   * *Answer:* Rate limiting (`iptables -m limit --limit 10/s`) dampens medium spikes while keeping the service accessible for misconfigured clients. Hard `DROP` blocks critical malicious floods immediately.
+ Hard `DROP` blocks critical malicious floods immediately.
 3. **Why is an Auto-Expiry Cooldown essential?**
    * *Answer:* IP spoofing or dynamic IP reallocation (DHCP) means permanent bans would eventually block legitimate users. A 60-second cooldown ensures defensive agility.
